@@ -63,6 +63,10 @@ class Post
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="IKNSA\AppBundle\Entity\User")
+     */
+    private $user;
 
     /**
      * Get id
@@ -217,5 +221,28 @@ class Post
     {
         return $this->image;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \IKNSA\AppBundle\Entity\User $user
+     *
+     * @return Post
+     */
+    public function setUser(\IKNSA\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \IKNSA\AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}
