@@ -2,12 +2,16 @@
 
 {% block body %}
     <h1>Post</h1>
-
+{{ dump(post.file) }}
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ post.id }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset('uploads/pictures/' ~ post.id ~ '.' ~ post.extension) }}"></td>
             </tr>
             <tr>
                 <th>Title</th>
@@ -27,11 +31,7 @@
             </tr>
             <tr>
                 <th>Author</th>
-                <td>{{ post.author }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ post.image }}</td>
+                <td></td>
             </tr>
         </tbody>
     </table>
