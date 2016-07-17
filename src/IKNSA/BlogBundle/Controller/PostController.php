@@ -35,6 +35,12 @@ class PostController extends Controller
      */
     public function newAction(Request $request)
     {
+        if(!$this->getUser()) {
+            $this->addFlash('notice', 'You must be identified to access this section');
+
+            return $this->redirectToRoute('post_index');
+        }
+
         $post = new Post();
         $form = $this->createForm('IKNSA\BlogBundle\Form\PostType', $post);
         $form->handleRequest($request);
