@@ -31,14 +31,14 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="summary", type="string", length=255)
+     * @ORM\Column(name="summary", type="string", length=255, nullable=true)
      */
     private $summary;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="string", length=255)
+     * @ORM\Column(name="content", type="text", length=255)
      */
     private $content;
 
@@ -52,13 +52,6 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
-     */
-    private $author;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="image", type="string", length=255)
      */
     private $image;
@@ -67,6 +60,11 @@ class Post
      * @ORM\ManyToOne(targetEntity="IKNSA\AppBundle\Entity\User")
      */
     private $user;
+
+    public function __construct()
+    {
+        $this->createdAt = new \Datetime;
+    }
 
     /**
      * Get id
@@ -172,30 +170,6 @@ class Post
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set author
-     *
-     * @param string $author
-     *
-     * @return Post
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
     /**
