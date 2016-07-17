@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td><img src="{{ asset('uploads/pictures/' ~ post.id ~ '.' ~ post.extension) }}"></td>
+                <td><img src="{{ asset('uploads/pictures/' ~ post.getImage) }}"></td>
             </tr>
             <tr>
                 <th>Title</th>

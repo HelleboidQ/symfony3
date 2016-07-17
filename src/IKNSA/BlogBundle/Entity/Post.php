@@ -219,13 +219,6 @@ class Post
         return $this->extension;
     }
 
-    public function getWebPath()
-    {
-        return null === $this->extension
-            ? null
-            : $this->getUploadDir().'/'.$this->extension;
-    }
-
     protected function getUploadRootDir()
     {
         // the absolute directory path where uploaded
@@ -324,6 +317,11 @@ class Post
         if (isset($this->temp)) {
             unlink($this->temp);
         }
+    }
+
+    public function getImage()
+    {
+        return $this->id.'.'.$this->extension;
     }
 
     public function getAbsolutePath()
