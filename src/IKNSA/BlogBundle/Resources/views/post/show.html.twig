@@ -10,7 +10,13 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td><img src="{{ asset('uploads/pictures/' ~ post.getImage) }}"></td>
+                <td>
+                    {% if post.getImage %}
+                        <img src="{{ asset('uploads/pictures/' ~ post.getImage) }}">
+                    {% else %}
+                        <p>No image was set for this post</p>
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Title</th>
@@ -30,7 +36,13 @@
             </tr>
             <tr>
                 <th>Author</th>
-                <td></td>
+                <td>
+                    {% if post.user %}
+                        {{ post.user.username }}
+                    {% else %}
+                        <i>Annonymous</i>
+                    {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>

@@ -321,7 +321,11 @@ class Post
 
     public function getImage()
     {
-        return $this->id.'.'.$this->extension;
+        if($this->id && $this->extension) {
+            return $this->id.'.'.$this->extension;
+        } else {
+            return null;
+        }
     }
 
     public function getAbsolutePath()

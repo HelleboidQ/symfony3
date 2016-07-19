@@ -89,7 +89,7 @@ class PostController extends Controller
             $em->persist($post);
             $em->flush();
 
-            return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
+            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
         }
 
         return $this->render('IKNSABlogBundle:post:edit.html.twig', array(
