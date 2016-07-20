@@ -4,7 +4,6 @@ namespace IKNSA\BlogBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use IKNSA\BlogBundle\Entity\Post;
 use IKNSA\BlogBundle\Form\PostType;
 
@@ -22,7 +21,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $posts = $em->getRepository('IKNSABlogBundle:Post')->findAll();
+        $posts = $em->getRepository('IKNSABlogBundle:Post')->getLastInserted('IKNSABlogBundle:Post', 3);
 
         return $this->render('IKNSABlogBundle:post:index.html.twig', array(
             'posts' => $posts,
