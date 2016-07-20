@@ -14,7 +14,6 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Summary</th>
-                <th>Content</th>
                 <th>Createdat</th>
                 <th>Author</th>
                 <th>Image</th>
@@ -27,18 +26,17 @@
                 <td><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.id }}</a></td>
                 <td>{{ post.title }}</td>
                 <td>{{ post.summary }}</td>
-                <td>{{ post.content }}</td>
                 <td>{% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    {% if post.user %}
-                        {{ post.user.username }}
+                    {% if post %}
+                        {{ post.username }}
                     {% else %}
                         <i>Annonymous</i>
                     {% endif %}
                 </td>
                 <td>
-                    {% if post.getImage %}
-                        <img src="{{ asset('uploads/pictures/' ~ post.getImage) }}" style="width:75px;max-height:75px;">
+                    {% if post.id and post.extension %}
+                        <img src="{{ asset('uploads/pictures/' ~ post.id ~ '.' ~ post.extension) }}" style="width:75px;max-height:75px;">
                     {% else %}
                         <i>null</i>
                     {% endif %}

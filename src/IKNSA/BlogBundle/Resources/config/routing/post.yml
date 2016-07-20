@@ -1,24 +1,29 @@
 post_index:
-    path:     /
+    path:     /post/
     defaults: { _controller: "IKNSABlogBundle:Post:index" }
     methods:  GET
 
+api_post_index:
+    path:     /api/post/
+    defaults: { _controller: "IKNSABlogBundle:Post:apiIndex" }
+    methods:  GET
+
 post_show:
-    path:     /{id}/show
+    path:     /post/{id}/show
     defaults: { _controller: "IKNSABlogBundle:Post:show" }
     methods:  GET
 
 post_new:
-    path:     /new
+    path:     /post/new
     defaults: { _controller: "IKNSABlogBundle:Post:new" }
     methods:  [GET, POST]
 
 post_edit:
-    path:     /{id}/edit
+    path:     /post/{id}/edit
     defaults: { _controller: "IKNSABlogBundle:Post:edit" }
     methods:  [GET, POST]
 
 post_delete:
-    path:     /{id}/delete
+    path:     /post/{id}/delete
     defaults: { _controller: "IKNSABlogBundle:Post:delete" }
     methods:  DELETE

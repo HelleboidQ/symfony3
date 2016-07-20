@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IKNSA\BlogBundle\Entity\Post;
 use IKNSA\BlogBundle\Form\PostType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Post controller.
@@ -130,5 +131,16 @@ class PostController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function apiIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $posts = $em->getRepository('IKNSABlogBundle:Post')->getLastInserted('IKNSABlogBundle:Post', 3);
+
+        return new JsonResponse(array(
+            'posts' => $posts
+        ));
     }
 }

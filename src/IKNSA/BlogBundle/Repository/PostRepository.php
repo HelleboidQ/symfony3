@@ -14,7 +14,7 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->getEntityManager()
                     ->createQuery(
-                        "SELECT e FROM $entity e ORDER BY e.id DESC"
+                        "SELECT e.id, e.title, e.summary, e.createdAt, e.extension, u.username FROM $entity e JOIN e.user u ORDER BY e.id DESC"
                     )
                     ->setMaxResults($amount)
                     ->getResult();

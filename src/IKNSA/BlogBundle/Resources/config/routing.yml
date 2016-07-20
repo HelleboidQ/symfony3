@@ -1,6 +1,6 @@
 iknsa_blog_post:
     resource: "@IKNSABlogBundle/Resources/config/routing/post.yml"
-    prefix:   /post
+    prefix:   /
 
 iknsa_blog_homepage:
     path:     /
