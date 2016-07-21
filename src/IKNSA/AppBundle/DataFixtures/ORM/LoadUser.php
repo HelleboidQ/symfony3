@@ -39,6 +39,15 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
         $admin->setRoles(array('ROLE_ADMIN'));
         $manager->persist($admin);
 
+        $contributor = $userManager->createUser();
+        $contributor->setUsername('contributor');
+        $contributor->setEmail('contributor@iknsa.com');
+        $contributor->setPlainPassword('contributor');
+        $contributor->setEnabled(true);
+        $contributor->setLastLogin(new \Datetime('NOW'));
+        $contributor->setRoles(array('ROLE_CONTRIBUTOR'));
+        $manager->persist($contributor);
+
         $manager->flush();
     }
 }

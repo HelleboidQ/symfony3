@@ -63,9 +63,18 @@
 
     <hr>
     <h1>Comments</h1>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+        {{ form_end(form) }}
+    {% endif %}
+
+    <h3>Comments listing</h3>
+    {% for comment in comments %}
+        <hr>
+        <i>Posted by: <b>{{ comment.user.username|title }}</b> on the <em>{{ comment.createdAt.date|date('d/m/y h:i') }}</em></i>
+        <p>{{ comment.comment }}</p>
+    {% endfor %}
 
 {% endblock %}

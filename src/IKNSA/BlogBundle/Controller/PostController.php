@@ -67,6 +67,7 @@ class PostController extends Controller
      */
     public function showAction(Post $post, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $comment = new Comment();
 
         $comment->setPost($post);
@@ -76,7 +77,6 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $comment->setUser($this->getUser());
             $em->persist($comment);
             $em->flush();
@@ -84,11 +84,14 @@ class PostController extends Controller
             return $this->redirect($request->headers->get('referer'));
         }
 
+        $comments = $em->getRepository('IKNSABlogBundle:Comment')->findByPost($post);
+
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('IKNSABlogBundle:post:show.html.twig', array(
             'post' => $post,
             'form' => $form->createView(),
+            'comments' => $comments,
             'delete_form' => $deleteForm->createView(),
         ));
     }
