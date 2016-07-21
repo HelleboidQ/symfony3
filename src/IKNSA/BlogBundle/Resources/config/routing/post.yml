@@ -11,7 +11,7 @@ api_post_index:
 post_show:
     path:     /post/{id}/show
     defaults: { _controller: "IKNSABlogBundle:Post:show" }
-    methods:  GET
+    methods:  [GET, POST]
 
 post_new:
     path:     /post/new

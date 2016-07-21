@@ -60,4 +60,12 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+    <hr>
+    <h1>Comments</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
 {% endblock %}

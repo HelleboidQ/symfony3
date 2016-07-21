@@ -4,13 +4,11 @@ namespace IKNSA\BlogBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use IKNSA\BlogBundle\Entity\Comment;
 use IKNSA\BlogBundle\Form\CommentType;
 
 /**
  * Comment controller.
- *
  */
 class CommentController extends Controller
 {
@@ -35,8 +33,6 @@ class CommentController extends Controller
      */
     public function newAction(Request $request)
     {
-        $comment = new Comment();
-        $form = $this->createForm('IKNSA\BlogBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,7 +41,7 @@ class CommentController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            return $this->redirectToRoute('comment_show', array('id' => $comment->getId()));
+            return $this->redirect($request->headers->get('referer'));
         }
 
         return $this->render('comment/new.html.twig', array(

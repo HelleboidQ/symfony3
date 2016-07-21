@@ -41,6 +41,18 @@ class Comment
     private $user;
 
     /**
+     * @var IKNSA\BlogBundle\Entity\Post
+     *
+     * @ORM\ManyToOne(targetEntity="IKNSA\BlogBundle\Entity\Post")
+     */
+    private $post;
+
+    public function __construct()
+    {
+        $this->createdAt = new \Datetime;
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -97,5 +109,28 @@ class Comment
     {
         return $this->createdAt;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \IKNSA\AppBundle\Entity\User $user
+     *
+     * @return Comment
+     */
+    public function setUser(\IKNSA\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \IKNSA\AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

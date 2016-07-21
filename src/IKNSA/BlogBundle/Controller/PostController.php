@@ -5,6 +5,7 @@ namespace IKNSA\BlogBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IKNSA\BlogBundle\Entity\Post;
+use IKNSA\BlogBundle\Entity\Comment;
 use IKNSA\BlogBundle\Form\PostType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -64,12 +65,30 @@ class PostController extends Controller
      * Finds and displays a Post entity.
      *
      */
-    public function showAction(Post $post)
+    public function showAction(Post $post, Request $request)
     {
+        $comment = new Comment();
+
+        $comment->setPost($post);
+
+        $form = $this->createForm('IKNSA\BlogBundle\Form\CommentType', $comment);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $comment->setUser($this->getUser());
+            $em->persist($comment);
+            $em->flush();
+
+            return $this->redirect($request->headers->get('referer'));
+        }
+
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('IKNSABlogBundle:post:show.html.twig', array(
             'post' => $post,
+            'form' => $form->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
