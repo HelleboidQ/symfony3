@@ -7,8 +7,9 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwareInterface
+class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
     private $container;
 
@@ -49,5 +50,14 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
         $manager->persist($contributor);
 
         $manager->flush();
+
+        $this->addReference('user-user', $user);
+        $this->addReference('user-admin', $admin);
+        $this->addReference('user-contributor', $contributor);
+    }
+
+    public function getOrder()
+    {
+        return 100;
     }
 }
