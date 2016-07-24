@@ -34,7 +34,7 @@ module.exports = function (grunt) {
         files: [
           '<%= config.app %>/scripts/{,*/}*.js'
         ],
-        tasks: ['jshint', 'dist']
+        tasks: ['jshint', 'uglify']
       },
       sass: {
         files: [

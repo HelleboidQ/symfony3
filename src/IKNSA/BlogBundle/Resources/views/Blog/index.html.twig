@@ -1,5 +1,10 @@
 {% extends 'IKNSABlogBundle::layout.html.twig' %}
 
+{% block javascripts %}
+    <script src="{{ asset('dist/scripts/vendor/angular/angular.min.js') }}"></script>
+    <script src="{{ asset('angular-sanitize/angular-sanitize.min.js') }}"></script>
+{% endblock %}
+
 {% block blogContent %}
 <div class="row">
     <!-- Carousel Slideshow -->
@@ -41,59 +46,45 @@
 </div>
 </div>
 <div class="container background-gray-lighter">
-<div class="row">
-    <h2 class="animate fadeIn text-center margin-top-50">Welcome to Enlighten</h2>
-    <hr class="margin-top-15">
-    <p class="animate fadeIn text-center">Enlighten offers you the canvas to turn your imagination in to a reality
-        <br>giving you the perfect framework for your project!</p>
-    <p class="text-center animate fadeInUp margin-bottom-50">
-        <button type="button" class="btn btn-lg btn-primary">View Details</button>
-    </p>
-</div>
+    <div class="row">
+        <h2 class="animate fadeIn text-center margin-top-50">Welcome to Enlighten</h2>
+        <hr class="margin-top-15">
+        <p class="animate fadeIn text-center">Enlighten offers you the canvas to turn your imagination in to a reality
+            <br>giving you the perfect framework for your project!</p>
+        <p class="text-center animate fadeInUp margin-bottom-50">
+            <button type="button" class="btn btn-lg btn-primary">View Details</button>
+        </p>
+    </div>
 </div>
 <div class="container">
-<div class="row margin-vert-30">
-    <!-- Main Text -->
-    <div class="col-md-9">
-        <h2>Lorem ipsum dolor</h2>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-            lobortis nisl ut aliquip ex ea commodo consequat.</p>
-        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
-            delenit augue duis dolore te feugait nulla facilisi. Cras non sem sem, at eleifend mi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Curabitur
-            eget nisl a risus.</p>
-        <img class="visible-lg animate fadeInUp" style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;" src="{{ asset('static/assets/img/frontpage/responsive_homepage.png') }}" alt="">
+    <div class="row margin-vert-30">
+        <!-- Main Text -->
+        <div class="col-md-9">
+            <h2>Lorem ipsum dolor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                lobortis nisl ut aliquip ex ea commodo consequat.</p>
+            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+                delenit augue duis dolore te feugait nulla facilisi. Cras non sem sem, at eleifend mi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Curabitur
+                eget nisl a risus.</p>
+            <img class="visible-lg animate fadeInUp" style="bottom: -50px; position: relative; left: 85px; margin-top: -20px;" src="{{ asset('static/assets/img/frontpage/responsive_homepage.png') }}" alt="">
+        </div>
+        <!-- End Main Text -->
+        <!-- Side Column -->
+        <div class="col-md-3" ng-app="post">
+            <div ng-controller="PostController">
+                <h3 class="title">Latest Post</h3>
+                <div ng-repeat="post in posts">
+                    <h6 style="margin: 0;"><i>Created by <b>{{ '{{ post.username }}' }}</b></i></h6>
+                    <p>
+                        <small>Created <i>{{ '{{ post.createdAt.date }}' }}</i></small>
+                    </p>
+                    <h4 style="margin: 0;">{{ '{{ post.title }}' }}</h4>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <!-- End Side Column -->
     </div>
-    <!-- End Main Text -->
-    <!-- Side Column -->
-    <div class="col-md-3">
-        <h3 class="title">Opening hours</h3>
-        <h6 style="margin: 0;">Mon - Wed</h6>
-        <h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-        <p>
-            <small>* Lorem ipsum dolor sit amet</small>
-        </p>
-        <hr>
-        <h6 style="margin: 0;">Thursday</h6>
-        <h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-        <p>
-            <small>* Lorem ipsum dolor sit amet</small>
-        </p>
-        <hr>
-        <h6 style="margin: 0;">Fri-Sat</h6>
-        <h4 style="margin: 0;">7:00 am - 1:30 pm</h4>
-        <p>
-            <small>* Lorem ipsum dolor sit amet</small>
-        </p>
-        <hr>
-        <h6 style="margin: 0;">Suday</h6>
-        <h4 style="margin: 0;">CLOSED</h4>
-        <p>
-            <small>* Lorem ipsum dolor sit amet</small>
-        </p>
-        <hr>
-    </div>
-    <!-- End Side Column -->
-</div>
 </div>
 <div class="container background-gray-lighter">
 <div class="row row-no-margin">
