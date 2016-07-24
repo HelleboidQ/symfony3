@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new IKNSA\AppBundle\IKNSAAppBundle(),
             new IKNSA\BlogBundle\IKNSABlogBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
