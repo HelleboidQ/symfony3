@@ -19,4 +19,13 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
                     ->setMaxResults($amount)
                     ->getResult();
     }
+
+    public function getPostById($post)
+    {
+        return $this->getEntityManager()
+                    ->createQuery(
+                        "SELECT p.id, p.title, p.content, p.createdAt, p.extension, u.username FROM IKNSABlogBundle:Post p JOIN p.user u WHERE p.id = $post"
+                    )
+                    ->getResult();
+    }
 }

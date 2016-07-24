@@ -165,4 +165,22 @@ class PostController extends Controller
             'posts' => $posts
         ));
     }
+
+    /**
+     * Finds and displays a Post entity.
+     *
+     */
+    public function apiShowAction(Post $post, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $comments = $em->getRepository('IKNSABlogBundle:Comment')->getCommentsByPostId($post->getId());
+
+        $post = $em->getRepository('IKNSABlogBundle:Post')->getPostById($post->getId());
+
+        return new JsonResponse(array(
+            'post' => $post,
+            'comments' => $comments,
+        ));
+    }
 }

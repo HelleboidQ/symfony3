@@ -13,6 +13,11 @@ post_show:
     defaults: { _controller: "IKNSABlogBundle:Post:show" }
     methods:  [GET, POST]
 
+api_post_show:
+    path:     api/post/{id}/show
+    defaults: { _controller: "IKNSABlogBundle:Post:apiShow" }
+    methods:  GET
+
 post_new:
     path:     /post/new
     defaults: { _controller: "IKNSABlogBundle:Post:new" }
